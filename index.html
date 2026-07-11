@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sahabat Hukum — Belajar Hukum Jadi Lebih Mudah</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1E2A5E;
+    --navy-soft:#33417F;
+    --beige:#E5DCC5;
+    --ivory:#FFFFF0;
+    --accent:#C97B4A;
+    --accent-light:#E6A876;
+    --text:#332F2A;
+    --muted:#726C60;
+    --line:#DFD6BE;
+
+    --font-head:'Poppins', sans-serif;
+    --font-body:'Lora', serif;
+    --radius:16px;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background:var(--ivory);
+    color:var(--text);
+    font-family:var(--font-body);
+    line-height:1.65;
+  }
+  img,svg{ display:block; max-width:100%; }
+  a{ color:inherit; text-decoration:none; }
+  button{ font-family:inherit; cursor:pointer; }
+  ul{ list-style:none; }
+  .container{ max-width:1120px; margin:0 auto; padding:0 24px; }
+  ::selection{ background:var(--accent-light); color:#fff; }
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible{
+    outline:2px solid var(--accent); outline-offset:3px;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.001ms !important; transition-duration:0.001ms !important; }
+  }
+
+  /* ===== HEADER ===== */
+  header{
+    position:sticky; top:0; z-index:100;
+    background:rgba(255,255,240,0.94); backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .header-inner{
+    display:flex; align-items:center; justify-content:space-between; height:78px;
+  }
+  .logo{ display:flex; align-items:center; gap:10px; }
+  .logo svg{ width:36px; height:36px; }
+  .logo-text{ font-family:var(--font-head); font-weight:700; font-size:1.25rem; color:var(--navy); }
+  .logo-text span{ display:block; font-family:var(--font-body); font-style:italic; font-weight:400; font-size:0.72rem; color:var(--accent); }
+
+  nav.primary-nav{ display:flex; align-items:center; gap:30px; }
+  nav.primary-nav a{
+    font-family:var(--font-head); font-size:0.85rem; font-weight:500; color:var(--navy);
+    padding:8px 4px; position:relative;
+  }
+  nav.primary-nav a::after{
+    content:""; position:absolute; left:0; bottom:2px; height:2px; width:0;
+    background:var(--accent); border-radius:2px; transition:width .25s ease;
+  }
+  nav.primary-nav a:hover::after{ width:100%; }
+
+  .menu-toggle{
+    display:none; background:none; border:none; width:32px; height:32px;
+    flex-direction:column; justify-content:center; gap:5px;
+  }
+  .menu-toggle span{ height:2px; background:var(--navy); border-radius:2px; }
+
+  /* ===== HERO ===== */
+  .hero{
+    padding:80px 0 60px;
+    background:
+      radial-gradient(circle at 88% 20%, rgba(201,123,74,0.14), transparent 45%),
+      var(--ivory);
+  }
+  .hero-grid{ display:grid; grid-template-columns:1.15fr 0.85fr; gap:50px; align-items:center; }
+  .hero-badge{
+    display:inline-flex; align-items:center; gap:8px; background:var(--beige);
+    color:var(--navy); font-family:var(--font-head); font-size:0.75rem; font-weight:600;
+    padding:7px 14px; border-radius:20px; margin-bottom:22px;
+  }
+  .hero-badge svg{ width:14px; height:14px; }
+  h1.hero-title{
+    font-family:var(--font-head); font-weight:700; font-size:clamp(2.1rem,4vw,3.1rem);
+    line-height:1.18; color:var(--navy); max-width:15ch;
+  }
+  h1.hero-title em{ font-style:italic; color:var(--accent); font-family:var(--font-body); font-weight:600; }
+  .hero-sub{ margin-top:20px; font-size:1.05rem; color:var(--muted); max-width:44ch; }
+
+  .btn-hero{
+    display:inline-flex; align-items:center; gap:8px; margin-top:26px;
+    background:var(--navy); color:#fff; font-family:var(--font-head); font-weight:600;
+    font-size:0.92rem; padding:14px 26px; border-radius:30px;
+    transition:background .2s ease, transform .2s ease;
+  }
+  .btn-hero:hover{ background:var(--accent); transform:translateY(-2px); }
+  .why-box{
+    margin-top:36px; background:#fff; border:1px solid var(--line); border-radius:var(--radius);
+    padding:22px 26px; max-width:46ch;
+  }
+  .why-box h3{ font-family:var(--font-head); color:var(--navy); font-size:1.05rem; margin-bottom:8px; }
+  .why-box p{ color:var(--muted); font-size:0.92rem; }
+  .hero-closing{ margin-top:24px; color:var(--muted); font-size:0.92rem; }
+  .hero-closing a{ color:var(--accent); font-weight:600; }
+  .hero-cards{ margin-top:24px; display:flex; gap:14px; flex-wrap:wrap; }
+  .hero-card{
+    background:#fff; border:1px solid var(--line); border-radius:var(--radius);
+    padding:18px 20px; flex:1; min-width:150px;
+    display:flex; flex-direction:column; gap:8px;
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .hero-card:hover{ transform:translateY(-4px); box-shadow:0 10px 24px rgba(30,42,94,0.1); }
+  .hero-card svg{ width:26px; height:26px; color:var(--accent); }
+  .hero-card strong{ font-family:var(--font-head); font-size:0.95rem; color:var(--navy); }
+  .hero-card small{ color:var(--muted); font-size:0.78rem; }
+
+  .hero-illust{ display:flex; justify-content:center; }
+  .hero-illust svg{ width:100%; max-width:340px; }
+
+  /* ===== SECTION SHARED ===== */
+  section{ padding:76px 0; }
+  .section-tag{
+    font-family:var(--font-head); font-size:0.75rem; font-weight:600; letter-spacing:0.06em;
+    color:var(--accent); text-transform:uppercase; margin-bottom:10px; display:block;
+  }
+  h2.section-title{
+    font-family:var(--font-head); font-weight:700; font-size:clamp(1.6rem,2.6vw,2.1rem); color:var(--navy);
+    max-width:22ch;
+  }
+  .section-head{ margin-bottom:44px; }
+  .section-desc{ margin-top:12px; color:var(--muted); max-width:52ch; }
+
+  /* ===== ARTIKEL ===== */
+  .articles{ background:var(--beige); }
+  .article-list{ display:flex; flex-direction:column; gap:22px; }
+  .article-card{
+    background:#fff; border-radius:var(--radius); padding:32px 34px;
+    border:1px solid var(--line);
+  }
+  .article-card h3{
+    font-family:var(--font-head); color:var(--navy); font-size:1.35rem; margin-bottom:14px;
+  }
+  .article-card p{ color:var(--text); font-size:0.98rem; }
+  .article-card p + p{ margin-top:12px; }
+  .article-source{
+    margin-top:20px; padding-top:16px; border-top:1px dashed var(--line);
+    font-family:var(--font-head); font-size:0.75rem; color:var(--muted);
+    display:flex; align-items:center; gap:8px;
+  }
+  .article-source svg{ width:14px; height:14px; color:var(--accent); }
+  .article-note{
+    margin-top:12px; font-size:0.82rem; color:var(--muted); background:var(--beige);
+    padding:12px 16px; border-radius:10px;
+  }
+
+  /* ===== KAMUS ===== */
+  .kamus{ background:var(--ivory); }
+  .kamus-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
+  .flip-card{
+    perspective:1200px; height:150px; cursor:pointer;
+  }
+  .flip-inner{
+    position:relative; width:100%; height:100%; transition:transform .5s;
+    transform-style:preserve-3d;
+  }
+  .flip-card.flipped .flip-inner{ transform:rotateY(180deg); }
+  .flip-face{
+    position:absolute; inset:0; backface-visibility:hidden; border-radius:var(--radius);
+    display:flex; flex-direction:column; justify-content:center; padding:22px 24px;
+  }
+  .flip-front{
+    background:var(--navy); color:#fff;
+    display:flex; flex-direction:row; align-items:center; justify-content:space-between;
+  }
+  .flip-front strong{ font-family:var(--font-head); font-size:1.1rem; }
+  .flip-front span{ font-size:0.72rem; color:var(--accent-light); font-family:var(--font-head); }
+  .flip-front svg{ width:20px; height:20px; opacity:0.7; }
+  .flip-back{
+    background:var(--accent); color:#fff; transform:rotateY(180deg);
+    font-size:0.9rem; line-height:1.5;
+  }
+  .kamus-hint{
+    text-align:center; margin-top:26px; font-size:0.82rem; color:var(--muted); font-family:var(--font-head);
+  }
+  .kamus-disclaimer{
+    text-align:center; margin-top:8px; font-size:0.78rem; color:var(--muted); font-style:italic;
+  }
+
+  /* ===== TENTANG ===== */
+  .tentang{ background:var(--beige); }
+  .tentang-grid{ display:grid; grid-template-columns:0.8fr 1.2fr; gap:50px; align-items:center; }
+  .avatar{
+    width:220px; height:220px; border-radius:50%; background:#fff;
+    border:4px solid var(--navy); display:flex; align-items:center; justify-content:center;
+    margin:0 auto; color:var(--navy); position:relative;
+  }
+  .avatar svg{ width:90px; height:90px; opacity:0.35; }
+  .avatar-label{
+    position:absolute; bottom:-14px; left:50%; transform:translateX(-50%);
+    background:var(--accent); color:#fff; font-family:var(--font-head); font-size:0.68rem;
+    padding:5px 12px; border-radius:20px; white-space:nowrap;
+  }
+  .tentang-text h3{
+    font-family:var(--font-head); color:var(--navy); font-size:1.5rem; margin-bottom:14px;
+  }
+  .tentang-text p{ color:var(--text); margin-bottom:12px; }
+  .placeholder{
+    background:rgba(201,123,74,0.16); color:var(--accent); padding:1px 6px; border-radius:4px;
+    font-weight:600; font-family:var(--font-head); font-size:0.92rem;
+  }
+  .tentang-meta{
+    margin-top:20px; display:flex; gap:14px; flex-wrap:wrap;
+  }
+  .tentang-meta span{
+    font-family:var(--font-head); font-size:0.76rem; background:#fff; border:1px solid var(--line);
+    padding:6px 12px; border-radius:20px; color:var(--navy);
+  }
+  .disclaimer-text{ margin-top:18px; font-size:0.85rem; color:var(--muted); }
+
+  .tim-section{ margin-top:48px; }
+  .tim-label{
+    font-family:var(--font-head); font-size:0.85rem; color:var(--navy); margin-bottom:16px;
+  }
+  .tim-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:14px;
+  }
+  .tim-card{
+    background:#fff; border:1px solid var(--line); border-radius:12px;
+    padding:16px 18px; display:flex; flex-direction:column; gap:4px;
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .tim-card:hover{ transform:translateY(-3px); box-shadow:0 8px 18px rgba(30,42,94,0.08); }
+  .tim-card strong{ font-family:var(--font-head); font-size:0.9rem; color:var(--navy); line-height:1.3; }
+  .tim-card span{ font-family:var(--font-head); font-size:0.78rem; color:var(--accent); }
+  @media (max-width:960px){
+    .tim-grid{ grid-template-columns:repeat(2,1fr); }
+  }
+  @media (max-width:520px){
+    .tim-grid{ grid-template-columns:1fr; }
+  }
+
+  /* ===== KONTAK ===== */
+  .kontak{ background:var(--ivory); }
+  .kontak-grid{ display:grid; grid-template-columns:1fr 1fr; gap:50px; }
+  .kontak-info{ display:flex; flex-direction:column; gap:20px; }
+  .info-item{ display:flex; align-items:flex-start; gap:14px; }
+  .info-item svg{ width:22px; height:22px; color:var(--accent); flex-shrink:0; margin-top:2px; }
+  .info-item strong{ display:block; font-family:var(--font-head); font-size:0.85rem; color:var(--navy); }
+  .info-item span{ font-size:0.9rem; color:var(--muted); }
+
+  form.kontak-form{ display:flex; flex-direction:column; gap:14px; }
+  .kontak-form input, .kontak-form textarea{
+    border:1px solid var(--line); border-radius:10px; padding:14px 16px;
+    font-family:var(--font-body); font-size:0.92rem; background:#fff; color:var(--text);
+    resize:none;
+  }
+  .kontak-form textarea{ min-height:110px; }
+  .kontak-form button{
+    background:var(--navy); color:#fff; font-family:var(--font-head); font-weight:600;
+    font-size:0.9rem; padding:14px 20px; border:none; border-radius:10px;
+    transition:background .2s ease;
+  }
+  .kontak-form button:hover{ background:var(--accent); }
+  .hp-field{ position:absolute; left:-9999px; top:-9999px; }
+  .form-success{
+    margin-top:14px; background:#E5F5E9; border:1px solid #9BD8AE; color:#276B3F;
+    padding:14px 18px; border-radius:10px; font-size:0.9rem; font-family:var(--font-head);
+  }
+  .form-note{ font-size:0.78rem; color:var(--muted); margin-top:2px; }
+
+  /* ===== FOOTER ===== */
+  footer{ background:var(--navy); color:#EFE9DA; padding:36px 0; }
+  .footer-inner{
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px;
+  }
+  .footer-inner .brand{ font-family:var(--font-head); font-weight:700; }
+  .footer-inner p{ font-size:0.8rem; color:#B9C0DE; }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width:960px){
+    .hero-grid{ grid-template-columns:1fr; }
+    .hero-illust{ order:-1; }
+    .tentang-grid{ grid-template-columns:1fr; text-align:center; }
+    .kontak-grid{ grid-template-columns:1fr; }
+    .kamus-grid{ grid-template-columns:1fr; }
+  }
+  @media (max-width:720px){
+    nav.primary-nav{
+      position:fixed; top:78px; left:0; right:0; bottom:0; background:var(--ivory);
+      flex-direction:column; align-items:flex-start; padding:30px 24px; gap:20px;
+      transform:translateX(100%); transition:transform .3s ease; border-top:1px solid var(--line);
+    }
+    nav.primary-nav.open{ transform:translateX(0); }
+    .menu-toggle{ display:flex; }
+    .hero-cards{ flex-direction:column; }
+    .article-card{ padding:24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header>
+  <div class="container header-inner">
+    <a href="#top" class="logo">
+      <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="19" fill="#1E2A5E"/><path d="M20 10v20M12 15h16M12 15l-3 6h6l-3-6ZM28 15l-3 6h6l-3-6ZM12 21c0 2 1.5 3.5 3 3.5s3-1.5 3-3.5M28 21c0 2 1.5 3.5 3 3.5s3-1.5 3-3.5M16 30h8" stroke="#FFFFF0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="logo-text">Sahabat Hukum<span>Belajar hukum jadi lebih mudah</span></div>
+    </a>
+    <nav class="primary-nav" id="primaryNav">
+      <a href="#top">Home</a>
+      <a href="#artikel">Artikel Hukum</a>
+      <a href="#kamus">Kamus Istilah</a>
+      <a href="#tentang">Tentang Kami</a>
+      <a href="#kontak">Kontak</a>
+    </nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="Buka menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- ===== HERO / HOME ===== -->
+<section class="hero" id="top">
+  <div class="container hero-grid">
+    <div>
+      <span class="hero-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4L12 2z"/></svg>
+        Belajar Hukum Indonesia Tanpa Pusing
+      </span>
+      <h1 class="hero-title">Sahabat <em>Hukum</em></h1>
+      <p class="hero-sub">Belajar Hukum Indonesia Tanpa Pusing.</p>
+      <a href="#artikel" class="btn-hero">Mulai Baca Artikel</a>
+
+      <div class="why-box">
+        <h3>Hukum Itu Nggak Serem Kok</h3>
+        <p>Banyak orang takut sama hukum karena bahasanya berat. Di sini, semua istilah hukum kita jelasin pakai bahasa sehari-hari + contoh kasus yang gampang dipahami.</p>
+      </div>
+
+      <div class="hero-cards">
+        <a href="#artikel" class="hero-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 4l6 6-8.5 8.5a2 2 0 01-2.8 0L6 15.9a2 2 0 010-2.8L14.5 4.6a2 2 0 012.8 0z"/><path d="M2 20h9"/></svg>
+          <strong>1. Hukum Pidana</strong>
+          <small>Aturan tentang kejahatan & hukumannya. Contoh: Pencurian, Penipuan.</small>
+        </a>
+        <a href="#artikel" class="hero-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19V6a2 2 0 012-2h8l6 6v9a2 2 0 01-2 2H6a2 2 0 01-2-2z"/><path d="M14 4v5h5"/></svg>
+          <strong>2. Hukum Perdata</strong>
+          <small>Aturan tentang hubungan antar orang. Contoh: Utang piutang, Warisan.</small>
+        </a>
+        <a href="#artikel" class="hero-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 21h16"/><path d="M5 21V9l7-5 7 5v12"/><path d="M9 21v-6h6v6"/></svg>
+          <strong>3. Hukum Tata Negara</strong>
+          <small>Aturan dasar negara. Contoh: UUD 1945, Hak & Kewajiban Warga Negara.</small>
+        </a>
+      </div>
+
+      <p class="hero-closing">Punya pertanyaan hukum dasar? Cek di halaman <a href="#kamus">Kamus Istilah</a> kami ya.</p>
+    </div>
+
+    <div class="hero-illust">
+      <svg viewBox="0 0 320 320" fill="none">
+        <circle cx="160" cy="160" r="150" fill="#E5DCC5"/>
+        <rect x="70" y="120" width="180" height="120" rx="8" fill="#FFFFF0" stroke="#1E2A5E" stroke-width="3"/>
+        <path d="M160 120V240" stroke="#1E2A5E" stroke-width="2" stroke-dasharray="4 4"/>
+        <path d="M90 140h50M90 155h40M90 170h55M180 140h50M180 155h40M180 170h55" stroke="#1E2A5E" stroke-width="2.5" stroke-linecap="round"/>
+        <g transform="translate(160,95)">
+          <path d="M0 0V30M-30 10H30M-30 10l-8 16h16l-8-16ZM30 10l-8 16h16l-8-16ZM-30 26c0 3 3 5 8 5s8-2 8-5M30 26c0 3-3 5-8 5s-8-2-8-5" stroke="#C97B4A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </g>
+        <circle cx="245" cy="95" r="26" fill="#C97B4A"/>
+        <path d="M235 95l7 7 13-14" stroke="#FFFFF0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ARTIKEL HUKUM ===== -->
+<section class="articles" id="artikel">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-tag">Artikel Hukum</span>
+      <h2 class="section-title">Apa Itu KUHP? Penjelasan Paling Gampang</h2>
+      <p class="section-desc">Biar nggak bingung lagi tiap denger kata "KUHP" di berita atau film.</p>
+    </div>
+
+    <div class="article-list">
+
+      <article class="article-card">
+        <h3>Apa Itu KUHP? Penjelasan Paling Gampang</h3>
+        <p>Pernah denger kata "KUHP" di berita atau film? Tapi bingung isinya apa?</p>
+        <p><strong>KUHP = Kitab Undang-Undang Hukum Pidana</strong></p>
+        <p>Simpelnya gini: <strong>KUHP itu buku peraturan tentang kejahatan di Indonesia.</strong> Kalau kamu ngelanggar isi buku ini, berarti kamu bisa dipidana atau dihukum oleh negara.</p>
+
+        <p><strong>Isinya KUHP Apa Aja?</strong><br>KUHP dibagi jadi 2 bagian besar:</p>
+        <p><strong>1. Aturan Umum</strong><br>Bagian ini jelasin hal-hal dasar. Contoh: Umur berapa bisa dipenjara? Gimana kalau kejahatannya dilakuin di luar negeri?</p>
+        <p><strong>2. Jenis-Jenis Kejahatan & Hukumannya</strong><br>Ini bagian yang paling tebel. Isinya daftar kejahatan + berapa tahun penjaranya. Contohnya:</p>
+        <p>• <strong>Pencurian</strong>: Pasal 362 KUHP. Ancamannya penjara paling lama 5 tahun.<br>
+        • <strong>Penipuan</strong>: Pasal 378 KUHP. Ancamannya penjara paling lama 4 tahun.</p>
+
+        <p><strong>Terus Bedanya KUHP sama UU Lain?</strong><br>KUHP khusus buat kejahatan yang merugikan masyarakat luas. Contohnya maling, jambret. Kalau masalah antar orang pribadi kayak utang piutang, itu masuknya ke <strong>KUHPerdata</strong>, bukan KUHP.</p>
+
+        <div class="article-source">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+          Sumber: Kitab Undang-Undang Hukum Pidana, UU No. 1 Tahun 2023
+        </div>
+        <p class="article-note">📌 Catatan: nomor pasal di atas mengikuti KUHP lama yang jadi rujukan umum selama ini. Sejak 2 Januari 2026, Indonesia resmi memakai KUHP Nasional (UU No. 1 Tahun 2023) dengan penomoran pasal yang baru — kalau mau lebih akurat untuk tugas, sebutkan juga bahwa KUHP ini sudah diperbarui.</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== KAMUS ISTILAH ===== -->
+<section class="kamus" id="kamus">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-tag">Kamus Istilah</span>
+      <h2 class="section-title">Kamus Hukum Santai — Edisi Pemula</h2>
+      <p class="section-desc">Klik tiap kartu untuk lihat artinya dalam bahasa sehari-hari.</p>
+    </div>
+
+    <div class="kamus-grid" id="kamusGrid">
+      <!-- cards injected by JS from data below, but kept static here for no-JS fallback -->
+    </div>
+    <p class="kamus-hint">👆 Ketuk kartu untuk membuka artinya</p>
+    <p class="kamus-disclaimer">Istilah disederhanakan untuk edukasi. Untuk kasus serius, konsultasi ke LBH/Advokat.</p>
+  </div>
+</section>
+
+<!-- ===== TENTANG KAMI ===== -->
+<section class="tentang" id="tentang">
+  <div class="container">
+    <div class="tentang-grid">
+      <div>
+        <div class="avatar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H7a4 4 0 00-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          <span class="avatar-label">Tim Penyusun</span>
+        </div>
+      </div>
+      <div class="tentang-text">
+        <span class="section-tag">Tentang Kami</span>
+        <h3>Halo! Selamat datang di Sahabat Hukum 👋</h3>
+        <p>Website ini dibuat untuk memenuhi tugas mata kuliah <strong>Komputer</strong> oleh mahasiswa <strong>Prodi Hukum Pidana Islam</strong>, <strong>Fakultas Syari'ah dan Hukum</strong>.</p>
+        <p><strong>Kenapa ada website ini?</strong><br>Kami sadar banyak orang yang takut atau bingung sama hukum karena bahasanya susah. Padahal, hukum itu dekat banget sama kehidupan kita sehari-hari.</p>
+        <p>Lewat website ini, kami mau jadi "sahabat" yang ngejelasin dasar-dasar hukum Indonesia pakai bahasa yang santai dan simpel.</p>
+        <div class="tentang-meta">
+          <span>🏫 Fakultas Syari'ah dan Hukum</span>
+          <span>📚 Prodi Hukum Pidana Islam</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tim-section">
+      <p class="tim-label"><strong>Disusun oleh:</strong></p>
+      <div class="tim-grid">
+        <div class="tim-card"><strong>Fakhri Muhammad Al Amir</strong><span>1253060065</span></div>
+        <div class="tim-card"><strong>Haifa Asri Oktavia</strong><span>1253060093</span></div>
+        <div class="tim-card"><strong>Haura Madihatuz Zakiyah</strong><span>1253060088</span></div>
+        <div class="tim-card"><strong>Naufallino Putra Fadhila</strong><span>1253060072</span></div>
+        <div class="tim-card"><strong>Safitri Nuraini</strong><span>1253060100</span></div>
+        <div class="tim-card"><strong>Siti Amalia Risanti</strong><span>1253060068</span></div>
+        <div class="tim-card"><strong>Xena Zahara Khoirunnisaa</strong><span>1253060075</span></div>
+      </div>
+    </div>
+
+    <p class="disclaimer-text"><em>Disclaimer: Konten di website ini hanya untuk edukasi hukum dasar. Bukan pengganti nasihat hukum dari advokat profesional.</em></p>
+  </div>
+</section>
+
+<!-- ===== KONTAK ===== -->
+<section class="kontak" id="kontak">
+  <div class="container kontak-grid">
+    <div>
+      <span class="section-tag">Kontak</span>
+      <h2 class="section-title">Hubungi Kami</h2>
+      <p class="section-desc" style="margin-bottom:26px;">Ada pertanyaan atau saran untuk website ini? Silakan hubungi:</p>
+      <div class="kontak-info">
+        <div class="info-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+          <div><strong>Email</strong><span>Haifaasri49@gmail.com</span></div>
+        </div>
+        <div class="info-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/></svg>
+          <div><strong>Instagram</strong><span>@Haifaalfandii_25</span></div>
+        </div>
+      </div>
+    </div>
+
+    <form class="kontak-form" name="kontak-sahabat-hukum" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="kontak-sahabat-hukum">
+      <p class="hp-field"><label>Jangan isi ini kalau kamu manusia: <input name="bot-field"></label></p>
+      <input type="text" name="nama" placeholder="Nama kamu" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <textarea name="pesan" placeholder="Tulis pesan atau pertanyaanmu di sini..." required></textarea>
+      <button type="submit">Kirim Pesan</button>
+      <span class="form-note">*Pesan yang dikirim lewat form ini akan masuk ke dashboard Netlify pemilik situs.</span>
+    </form>
+    <div class="form-success" id="formSuccess" hidden>
+      <p>✅ Pesan berhasil dikirim! Terima kasih sudah menghubungi Sahabat Hukum.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container footer-inner">
+    <span class="brand">Sahabat Hukum</span>
+    <p>Dibuat untuk tugas mata kuliah Komputer · © 2026</p>
+  </div>
+</footer>
+
+<script>
+  // Mobile menu
+  const menuToggle = document.getElementById('menuToggle');
+  const primaryNav = document.getElementById('primaryNav');
+  menuToggle.addEventListener('click', () => primaryNav.classList.toggle('open'));
+  primaryNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => primaryNav.classList.remove('open')));
+
+  // Glossary data
+  const kamus = [
+    ["KUHP", "Kitab Undang-Undang Hukum Pidana. Isinya semua jenis kejahatan & hukumannya di Indonesia."],
+    ["Gugatan", "Surat resmi buat ngadu ke pengadilan karena merasa dirugikan orang lain."],
+    ["Tergugat", "Orang yang digugat / dilaporkan ke pengadilan."],
+    ["Penggugat", "Orang yang mengajukan gugatan ke pengadilan."],
+    ["Pasal", "Nomor aturan di dalam sebuah UU. Contoh: Pasal 362 KUHP = tentang pencurian."],
+    ["Restorative Justice", "Penyelesaian perkara pidana di luar pengadilan dengan cara damai."],
+    ["Somasi", "Surat peringatan dari pengacara sebelum beneran dibawa ke pengadilan."],
+    ["Hakim", "Orang yang bertugas memutuskan perkara di pengadilan."],
+    ["Jaksa", "Pihak yang menuntut orang yang diduga melakukan kejahatan di pengadilan pidana."],
+    ["PNBP", "Penerimaan Negara Bukan Pajak. Contoh: biaya buat akta cerai."]
+  ];
+
+  const grid = document.getElementById('kamusGrid');
+  kamus.forEach(([term, def]) => {
+    const card = document.createElement('div');
+    card.className = 'flip-card';
+    card.innerHTML = `
+      <div class="flip-inner">
+        <div class="flip-face flip-front">
+          <strong>${term}</strong>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+        </div>
+        <div class="flip-face flip-back">${def}</div>
+      </div>`;
+    card.addEventListener('click', () => card.classList.toggle('flipped'));
+    grid.appendChild(card);
+  });
+
+  // Netlify Forms — submit via AJAX supaya tidak reload halaman
+  const kontakForm = document.querySelector('form.kontak-form');
+  const formSuccess = document.getElementById('formSuccess');
+  if (kontakForm) {
+    kontakForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const data = new FormData(kontakForm);
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(data).toString()
+      })
+        .then(() => {
+          kontakForm.hidden = true;
+          formSuccess.hidden = false;
+        })
+        .catch(() => {
+          alert('Gagal mengirim pesan. Coba lagi beberapa saat lagi ya.');
+        });
+    });
+  }
+</script>
+
+</body>
+</html>
